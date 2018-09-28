@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 {
@@ -13,9 +14,16 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 
         private static string ModelPath => Path.Combine(AppPath, "IssueLabelerModel.zip");
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            await TrainAsync();
+
+            Console.ReadLine();
+        }
+
+        private static async Task TrainAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
