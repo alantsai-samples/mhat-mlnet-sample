@@ -15,6 +15,7 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.WinForm
     public partial class Form1 : Form
     {
         private static PredictionModel<GitHubIssue, GithubIssueLabelPrediction> Model;
+        private static string ModelPath;
 
         public Form1()
         {
@@ -31,10 +32,12 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.WinForm
                 Description = rtxtboxDescription.Text
             };
 
-            if(Model == null)
+            if(Model == null || ModelPath != txtModelPath.Text)
             {
+                ModelPath = txtModelPath.Text;
+
                 Model = await PredictionModel.ReadAsync
-                    <GitHubIssue, GithubIssueLabelPrediction>(txtModelPath.Text);
+                    <GitHubIssue, GithubIssueLabelPrediction>(ModelPath);
             }
 
             lblPredict.Text = Model.Predict(issue).Area;
