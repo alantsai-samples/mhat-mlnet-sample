@@ -1,6 +1,7 @@
 ﻿using MHAT.MLNET.Classifier.IssueLabeler.Core.Model;
 using Microsoft.ML;
 using Microsoft.ML.Data;
+using Microsoft.ML.Models;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Transforms;
 using System;
@@ -28,7 +29,7 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 
         private static async Task TrainAsync()
         {
-            Console.WriteLine("========準備訓練資料=============");
+            Console.WriteLine("======== 準備訓練資料 =============");
 
             var pipeline = new LearningPipeline();
 
@@ -52,6 +53,22 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
                 { PredictedLabelColumn = "PredictedLabel" });
 
 
+            Console.WriteLine("=============== 訓練模型 ===============");
+
+            var model = pipeline.Train<GitHubIssue, GithubIssueLabelPrediction>();
+
+            var testData = new TextLoader(TestPath).CreateFrom<GitHubIssue>(useHeader: true);
+
+            var evaluator = new ClassificationEvaluator();
+
+            ClassificationMetrics metrics = evaluator.Evaluate(model, testData);
+
+            Console.WriteLine("Micro-Accuracy： {0}", metrics.AccuracyMicro);
+
+            await model.WriteAsync(ModelPath);
+
+            Console.WriteLine("=============== 訓練完成 ===============");
+            Console.WriteLine("Model路徑： {0}", ModelPath);
         }
     }
 }
