@@ -35,6 +35,7 @@
             this.lblDescription = new System.Windows.Forms.Label();
             this.rtxtboxDescription = new System.Windows.Forms.RichTextBox();
             this.btnPredic = new System.Windows.Forms.Button();
+            this.lblPredict = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblModelPath
@@ -94,6 +95,16 @@
             this.btnPredic.TabIndex = 3;
             this.btnPredic.Text = "預測";
             this.btnPredic.UseVisualStyleBackColor = true;
+            this.btnPredic.Click += new System.EventHandler(this.btnPredic_Click);
+            // 
+            // lblPredict
+            // 
+            this.lblPredict.AutoSize = true;
+            this.lblPredict.Location = new System.Drawing.Point(36, 389);
+            this.lblPredict.Name = "lblPredict";
+            this.lblPredict.Size = new System.Drawing.Size(152, 18);
+            this.lblPredict.TabIndex = 0;
+            this.lblPredict.Text = "<Issue預測Label>";
             // 
             // Form1
             // 
@@ -104,6 +115,7 @@
             this.Controls.Add(this.rtxtboxDescription);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.txtModelPath);
+            this.Controls.Add(this.lblPredict);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblModelPath);
@@ -123,6 +135,7 @@
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.RichTextBox rtxtboxDescription;
         private System.Windows.Forms.Button btnPredic;
+        private System.Windows.Forms.Label lblPredict;
     }
 }
 

@@ -134,6 +134,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MHAT.MLNET.Classifier.IssueLabeler.Core\MHAT.MLNET.Classifier.IssueLabeler.Core.csproj">
+      <Project>{961AA215-28F7-4CD8-909A-045B82184CA0}</Project>
+      <Name>MHAT.MLNET.Classifier.IssueLabeler.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
