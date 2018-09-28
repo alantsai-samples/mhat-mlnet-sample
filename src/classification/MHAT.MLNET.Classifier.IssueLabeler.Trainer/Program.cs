@@ -35,12 +35,12 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 
             pipeline.Add(new TextLoader(DataPath).CreateFrom<GitHubIssue>(useHeader: true));
 
-            // 把Area轉換成為Dictionary數字
-            pipeline.Add(new Dictionarizer(("Area", "Label")));
-
             // 把兩個用來訓練的欄位變成數字的vector
             pipeline.Add(new TextFeaturizer("Title", "Title"));
             pipeline.Add(new TextFeaturizer("Description", "Description"));
+
+            // 把Area轉換成為Dictionary數字
+            pipeline.Add(new Dictionarizer(("Area", "Label")));
 
             // Title 和 Description合并變成訓練的闌尾
             pipeline.Add(new ColumnConcatenator("Features", "Title", "Description"));
