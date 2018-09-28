@@ -29,7 +29,7 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 
         private static async Task TrainAsync()
         {
-            Console.WriteLine("======== 準備訓練資料 =============");
+            Console.WriteLine("============ 準備訓練資料 ==============");
 
             var pipeline = new LearningPipeline();
 
@@ -63,12 +63,13 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
 
             ClassificationMetrics metrics = evaluator.Evaluate(model, testData);
 
-            Console.WriteLine("Micro-Accuracy： {0}", metrics.AccuracyMicro);
+            Console.WriteLine();
+            Console.WriteLine("Micro-Accuracy: {0}", metrics.AccuracyMicro);
 
             await model.WriteAsync(ModelPath);
 
             Console.WriteLine("=============== 訓練完成 ===============");
-            Console.WriteLine("Model路徑： {0}", ModelPath);
+            Console.WriteLine("Model路徑: {0}", ModelPath);
         }
     }
 }
