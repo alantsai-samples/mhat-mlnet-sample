@@ -42,7 +42,7 @@ namespace MHAT.MLNET.Classifier.IssueLabeler.Trainer
             // 把Area轉換成為Dictionary數字
             pipeline.Add(new Dictionarizer(("Area", "Label")));
 
-            // Title 和 Description合并變成訓練的闌尾
+            // Title 和 Description合并變成訓練的欄位
             pipeline.Add(new ColumnConcatenator("Features", "Title", "Description"));
 
             // 使用StochasticDualCoordinateAscent演算法
